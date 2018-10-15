@@ -34,3 +34,23 @@ ggplot(comics, aes(x = gender, fill = align)) +
 
 # Proportions!
 ggplot(comics, aes(x = align, fill = id)) + geom_bar(position = "fill") + ylab("Proportion")
+tab <- table(comics$align, comics$gender)
+options(scipen = 999, digits = 3)
+prop.table(tab, 2)
+
+# Plot of gender by align
+ggplot(comics, aes(x = align, fill = gender)) + geom_bar(position = "dodge")
+ggplot(comics, aes(x = align, fill = gender)) + geom_bar(position = "fill") + ylab("proportion")
+
+
+# ##########################################
+#  Distribution of one variable
+# ##########################################
+
+# Plot alignment changing factors order and broken down by gender
+comics$align <- factor(comics$align, levels = c("Bad", "Neutral", "Good"))
+ggplot(comics, aes(x = align)) + geom_bar(fill = "#B20000") + facet_wrap(~ gender)
+
+# Some other named colors can be found at: https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/
+# Remember to use only lowe cases
+
